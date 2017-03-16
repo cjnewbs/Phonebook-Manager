@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Revert to previous version</title>
+</head>
+<body>
+<?php echo $this->getlogout() ?>
+<h1>Revert to previous version</h1>
+<p><button onclick="document.location='<?php echo $this->_baseURL; ?>edit'" style="font-size: 20px;"><< Back to Edit</button></p>
+<table>
+    <tr>
+        <td>Date/Time</td>
+        <td>Click to view</td>
+        <td>Click to revert</td>
+    </tr>
+    <?php $archives = scandir('var/archive/'); ?>
+    <?php foreach ($archives as $archive): ?>
+        <?php if ($archive === '.' || $archive === '..') continue; ?>
+        <tr>
+            <td><?php echo date('d-m-Y H:i:s', $archive) ?></td>
+            <td><a href="<?php echo $this->_baseURL; ?>edit/preview?id=<?php echo $archive ?>" target="iframe">Preview</a></td>
+            <td><a href="<?php echo $this->_baseURL; ?>edit/restore?id=<?php echo $archive ?>">Revert to this version</a></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+<iframe name="iframe" width="100%" height="500px"></iframe>
+</body>
+</html>

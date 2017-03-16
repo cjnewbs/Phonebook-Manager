@@ -1,0 +1,11 @@
+<h1 style="text-align: center;">Are you sure you sure you want to revert to the version from <?php echo date('d-m-Y H:i:s', $_GET['id'])?>?</h1>
+<button id="confirm" style="display: block; margin: 0 auto; font-size: 20px;">Yes I messed up please help</button>
+<p><button onclick="document.location='<?php echo $this->_baseURL; ?>edit'" style="display: block; font-size: 20px; margin: 0 auto;"><< Back to Edit</button></p>
+<script>
+    document.getElementById("confirm").addEventListener("click", function() {
+        var result = confirm('Definitely?');
+        if (result == true) {
+            document.location = '<?php echo $this->_baseURL ?>edit/restore?confirm=true&id=<?php echo $_GET['id'] ?>'
+        }
+    });
+</script>

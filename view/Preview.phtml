@@ -1,0 +1,23 @@
+<?php $id = $_GET['id'] ?>
+<?php if (file_exists('var/archive/'.$id)): ?>
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Mobile</td>
+            <td>Work</td>
+            <td>Home</td>
+        </tr>
+        <?php foreach ($this->getCsvData('var/archive/'.$id) as $row): ?>
+            <tr>
+                <td><?php echo $row[0] ?></td>
+                <td><?php echo $row[1] ?></td>
+                <td><?php echo $row[2] ?></td>
+                <td><?php echo $row[3] ?></td>
+                <td><?php echo $row[4] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php else: ?>
+    Invalid CSV
+<?php endif; ?>

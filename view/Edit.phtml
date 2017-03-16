@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit addresses</title>
+</head>
+<body>
+<?php echo $this->getlogout() ?>
+<h1>Edit Address Book</h1>
+<form method="post" action="<?php echo $this->_baseURL; ?>edit/save">
+    <table>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Mobile</td>
+            <td>Work</td>
+            <td>Home</td>
+        </tr>
+        <?php foreach ($this->getCsvData() as $k => $row): ?>
+            <tr>
+                <td><input type="text" name="data[<?php echo $k ?>][fName]" value="<?php echo $row[0] ?>"></td>
+                <td><input type="text" name="data[<?php echo $k ?>][lName]" value="<?php echo $row[1] ?>"></td>
+                <td><input type="text" name="data[<?php echo $k ?>][mobile]" value="<?php echo $row[2] ?>"></td>
+                <td><input type="text" name="data[<?php echo $k ?>][work]" value="<?php echo $row[3] ?>"></td>
+                <td><input type="text" name="data[<?php echo $k ?>][home]" value="<?php echo $row[4] ?>"></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+    <button type="submit">Save Address Book</button>
+</form>
+<button onclick="document.location = '<?php echo $this->_baseURL; ?>edit/addrow'">Add Row</button>
+<p>Fucked up? Deleted everything? <a href="<?php echo $this->_baseURL;?>edit/revert">click here</a> to revert to a previous version dickhead</p>
+</body>
+</html>
